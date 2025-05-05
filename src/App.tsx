@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Menu } from 'lucide-react';
 import FilterBar from './components/FilterBar';
 import MapComponent from './components/MapComponent';
@@ -21,6 +21,7 @@ function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [weatherData, setWeatherData] = useState<Record<string, WeatherForecast[]>>({});
   const [, setIsLoading] = useState(false);
+  const recentComments = useMemo(() => getRecentCommentsForBeach(selectedBeach?.id ?? ''), [selectedBeach]);
 
   useEffect(() => {
     // Load initial weather data for all beaches
@@ -155,7 +156,7 @@ function App() {
           beach={selectedBeach}
           topPost={getTopPostForBeach(selectedBeach.id)}
           topComment={getTopCommentForBeach(selectedBeach.id)}
-          recentComments={getRecentCommentsForBeach(selectedBeach.id)}
+          recentComments={recentComments}
           weatherForecasts={weatherData[selectedBeach.id] || getWeatherForecastForBeach(selectedBeach.id)}
           onClose={closeBeachPanel}
         />

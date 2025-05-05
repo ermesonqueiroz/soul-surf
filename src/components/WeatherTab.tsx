@@ -27,14 +27,12 @@ const WeatherTab: React.FC<WeatherTabProps> = ({ forecasts, isLoading }) => {
 
   return (
     <div className="p-4">
-      <h3 className="font-bold text-lg mb-4">Surf Forecast</h3>
-      
       <div className="grid grid-cols-1 gap-4">
         {forecasts.map((forecast, index) => (
           <div key={index} className="bg-blue-50 rounded-lg p-4">
             <div className="flex justify-between items-center mb-2">
               <span className="font-medium">
-                {format(new Date(`${forecast.date}T${forecast.time}`), 'E, MMM d - h:mm a')}
+                {format(new Date(`${forecast.date}T${forecast.time}`), 'dd/MM/yyyy')}
               </span>
             </div>
             
@@ -69,7 +67,7 @@ const WeatherTab: React.FC<WeatherTabProps> = ({ forecasts, isLoading }) => {
                 >
                   <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
                 </svg>
-                <span>{forecast.waveHeight}m / {forecast.wavePeriod}s</span>
+                <span>{forecast.waveHeight?.toFixed(2)}m</span>
               </div>
               
               <div className="flex items-center">
@@ -79,7 +77,7 @@ const WeatherTab: React.FC<WeatherTabProps> = ({ forecasts, isLoading }) => {
             </div>
             
             <div className="mt-3 text-sm">
-              <div className="font-medium text-blue-700">Surf conditions:</div>
+              <div className="font-medium text-blue-700">Condições do surf:</div>
               <div className="mt-1">
                 {getSurfConditionText(forecast)}
               </div>
@@ -93,34 +91,34 @@ const WeatherTab: React.FC<WeatherTabProps> = ({ forecasts, isLoading }) => {
 
 // Helper function to generate surf condition text based on weather data
 const getSurfConditionText = (forecast: WeatherForecast): string => {
-  if (!forecast.waveHeight) return 'No wave data available';
+  if (!forecast.waveHeight) return 'Sem dados disponíveis';
   
-  let conditions = [];
+  const conditions = [];
   
   // Wave size
   if (forecast.waveHeight < 0.5) {
-    conditions.push('Very small waves');
+    conditions.push('Mar flat');
   } else if (forecast.waveHeight < 1) {
-    conditions.push('Small waves, good for beginners');
+    conditions.push('Marolas, ideais para iniciantes');
   } else if (forecast.waveHeight < 1.5) {
-    conditions.push('Medium waves, good for most levels');
+    conditions.push('Tá mel, bom para todos os níveis');
   } else if (forecast.waveHeight < 2) {
-    conditions.push('Medium to large waves, good for intermediates');
+    conditions.push('Mar agressivo, bom para surfistas experientes');
   } else {
-    conditions.push('Large waves, for experienced surfers only');
+    conditions.push('Mar perigoso, só pra big rider');
   }
   
   // Wind conditions
   const windDirection = forecast.windDirection;
   if ((windDirection > 180 && windDirection < 360) || windDirection === 0) {
-    conditions.push('offshore winds (good conditions)');
+    conditions.push('terral');
   } else {
-    conditions.push('onshore winds (choppy conditions)');
+    conditions.push('maral');
   }
   
   // Precipitation
   if (forecast.precipitation > 1) {
-    conditions.push('rain may affect visibility');
+    conditions.push('chovendo');
   }
   
   return conditions.join(', ');

@@ -184,7 +184,7 @@ const BeachPanel: React.FC<BeachPanelProps> = ({
               <div className="border rounded-lg overflow-hidden">
                 <div className="bg-gray-50 p-3 text-gray-800 font-medium">Comentários recentes</div>
                 <div className="divide-y">
-                  {commentsState.map((comment) => (
+                  {recentComments.map((comment) => (
                     <div key={comment.id} className="p-4">
                       <div className="flex items-start">
                         <div className="p-2 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 mt-1">
