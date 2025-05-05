@@ -26,13 +26,13 @@ interface MapComponentProps {
 
 // Custom marker icons
 const createIcon = (type: LocationType) => {
-  const iconUrl = 
+  const iconUrl =
     type === LocationType.BEACH
       ? '/icons/beach-marker.svg'
       : type === LocationType.REPAIR
       ? '/icons/repair-marker.svg'
       : '/icons/shop-marker.svg';
-  
+
   return L.icon({
     iconUrl,
     iconSize: [32, 32],
@@ -44,11 +44,11 @@ const createIcon = (type: LocationType) => {
 // Component to set the map view
 const SetMapView: React.FC<{ center: [number, number] }> = ({ center }) => {
   const map = useMap();
-  
+
   useEffect(() => {
     map.setView(center, map.getZoom());
   }, [center, map]);
-  
+
   return null;
 };
 
@@ -59,14 +59,14 @@ const MapComponent: React.FC<MapComponentProps> = ({
   onShopSelect,
 }) => {
   const [mapCenter] = useState<[number, number]>([-3.7319, -38.5267]); // Fortaleza center
-  
+
   const filteredLocations = locations.filter(location => {
     if (location.type === LocationType.BEACH) return visibleTypes.beaches;
     if (location.type === LocationType.REPAIR) return visibleTypes.repairs;
     if (location.type === LocationType.SHOP) return visibleTypes.shops;
     return false;
   });
-  
+
   const handleMarkerClick = (location: Location, e: L.LeafletMouseEvent) => {
     if (location.type === LocationType.BEACH) {
       onBeachSelect(location as Beach);
@@ -79,6 +79,7 @@ const MapComponent: React.FC<MapComponentProps> = ({
     }
   };
 
+
   return (
     <MapContainer
       center={mapCenter}
@@ -90,9 +91,9 @@ const MapComponent: React.FC<MapComponentProps> = ({
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      
+
       <SetMapView center={mapCenter} />
-      
+
       {filteredLocations.map(location => (
         <Marker
           key={location.id}

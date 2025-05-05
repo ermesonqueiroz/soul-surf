@@ -14,19 +14,19 @@ function App() {
     repairs: true,
     shops: true
   });
-  
+
   const [selectedBeach, setSelectedBeach] = useState<Beach | null>(null);
   const [selectedShop, setSelectedShop] = useState<Shop | Repair | null>(null);
   const [shopMarkerPosition, setShopMarkerPosition] = useState<[number, number] | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [weatherData, setWeatherData] = useState<Record<string, WeatherForecast[]>>({});
   const [, setIsLoading] = useState(false);
-  
+
   useEffect(() => {
     // Load initial weather data for all beaches
     const loadWeatherData = async () => {
       setIsLoading(true);
-      
+
       const weatherPromises = beaches.map(async (beach) => {
         try {
           const forecasts = await fetchWeatherForecast(beach.coordinates[0], beach.coordinates[1]);
@@ -36,46 +36,46 @@ function App() {
           return { beachId: beach.id, forecasts: getWeatherForecastForBeach(beach.id) };
         }
       });
-      
+
       const results = await Promise.all(weatherPromises);
-      
+
       const weatherMap: Record<string, WeatherForecast[]> = {};
       results.forEach(({ beachId, forecasts }) => {
         weatherMap[beachId] = forecasts;
       });
-      
+
       setWeatherData(weatherMap);
       setIsLoading(false);
     };
-    
+
     loadWeatherData();
   }, []);
-  
+
   const handleFilterChange = (newFilters: FilterState) => {
     setFilters(newFilters);
   };
-  
+
   const handleBeachSelect = (beach: Beach) => {
     setSelectedBeach(beach);
     setSelectedShop(null);
     setShopMarkerPosition(null);
   };
-  
+
   const handleShopSelect = (shop: Shop | Repair, position: [number, number]) => {
     setSelectedShop(shop);
     setShopMarkerPosition(position);
     setSelectedBeach(null);
   };
-  
+
   const closeBeachPanel = () => {
     setSelectedBeach(null);
   };
-  
+
   const closeShopInfoCard = () => {
     setSelectedShop(null);
     setShopMarkerPosition(null);
   };
-  
+
   return (
     <div className="h-screen w-full relative overflow-hidden">
       {/* Mobile Header */}
@@ -89,7 +89,7 @@ function App() {
           <Menu size={24} />
         </button>
       </div>
-      
+
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="sm:hidden absolute top-16 left-0 right-0 bg-white z-40 shadow-lg">
@@ -105,7 +105,7 @@ function App() {
             >
               Surf Beaches
             </button>
-            
+
             <button
               onClick={() => {
                 setFilters({...filters, repairs: !filters.repairs});
@@ -117,7 +117,7 @@ function App() {
             >
               Surfboard Repair
             </button>
-            
+
             <button
               onClick={() => {
                 setFilters({...filters, shops: !filters.shops});
@@ -132,7 +132,7 @@ function App() {
           </div>
         </div>
       )}
-      
+
       {/* Desktop Filters */}
       <div className="hidden sm:block">
         <FilterBar
@@ -140,7 +140,7 @@ function App() {
           onFilterChange={handleFilterChange}
         />
       </div>
-      
+
       {/* Map */}
       <MapComponent
         locations={allLocations}
@@ -148,7 +148,7 @@ function App() {
         onBeachSelect={handleBeachSelect}
         onShopSelect={handleShopSelect}
       />
-      
+
       {/* Beach Info Panel */}
       {selectedBeach && (
         <BeachPanel
@@ -160,10 +160,10 @@ function App() {
           onClose={closeBeachPanel}
         />
       )}
-      
+
       {/* Shop/Repair Info Card */}
       {selectedShop && shopMarkerPosition && (
-        <div 
+        <div
           className="absolute z-20"
           style={{
             left: `${window.innerWidth / 2}px`,
