@@ -36,9 +36,9 @@ const FilterBar: React.FC<FilterBarProps> = ({ filters, onFilterChange }) => {
         aria-label="Toggle beach markers"
       >
         <Wave size={20} />
-        <span className="hidden sm:inline">Beaches</span>
+        <span className="hidden sm:inline">Praias</span>
       </button>
-      
+
       <button
         onClick={() => handleToggle('repairs')}
         className={`flex items-center space-x-2 px-6 py-2 rounded-full transition-colors ${
@@ -49,9 +49,9 @@ const FilterBar: React.FC<FilterBarProps> = ({ filters, onFilterChange }) => {
         aria-label="Toggle repair shop markers"
       >
         <Wrench size={20} />
-        <span className="hidden sm:inline">Repairs</span>
+        <span className="hidden sm:inline">Reparos</span>
       </button>
-      
+
       <button
         onClick={() => handleToggle('shops')}
         className={`flex items-center space-x-2 px-6 py-2 rounded-full transition-colors ${
@@ -62,7 +62,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ filters, onFilterChange }) => {
         aria-label="Toggle surf shop markers"
       >
         <Surfboard size={20} />
-        <span className="hidden sm:inline">Shops</span>
+        <span className="hidden sm:inline">Lojas</span>
       </button>
     </div>
   );
