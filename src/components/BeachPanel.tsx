@@ -76,8 +76,10 @@ const BeachPanel: React.FC<BeachPanelProps> = ({
 
   return (
     <>
-      <div className="fixed inset-y-0 right-0 z-30 w-full sm:w-96 lg:w-[420px] bg-white shadow-lg transform transition-transform duration-300 overflow-y-auto">
-        <header className="bg-blue-500 text-white px-6 pt-6 relative">
+      <div
+        className="fixed inset-y-0 right-0 w-full sm:w-96 lg:w-[420px] bg-white shadow-lg transform transition-transform duration-300 overflow-y-auto"
+        style={{ zIndex: 1001 }} // MODIFICAÇÃO AQUI
+      >        <header className="bg-blue-500 text-white px-6 pt-6 relative">
           <button onClick={onClose} className="absolute top-4 right-4 text-white hover:text-blue-100 transition-colors" aria-label="Close panel">
             <X size={24} />
           </button>
