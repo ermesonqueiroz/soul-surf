@@ -23,7 +23,7 @@ const BeachPanel: React.FC<BeachPanelProps> = ({
   weatherForecasts,
   onClose,
 }) => {
-  const [activeTab, setActiveTab] = useState<'info' | 'weather'>('info');
+  const [activeTab, setActiveTab] = useState<'info' | 'weather' | 'registro'>('info');
   const [showSessionModal, setShowSessionModal] = useState(false);
   const [likedPost, setLikedPost] = useState(false);
   const [likedComment, setLikedComment] = useState(false);
@@ -89,7 +89,7 @@ const BeachPanel: React.FC<BeachPanelProps> = ({
               className={`px-4 py-2 rounded-t-lg transition-colors ${
                 activeTab === 'info'
                   ? 'bg-white text-blue-600 font-medium'
-                  : 'bg-blue-500 text-white'
+                  : 'bg-blue-500 text-white hover:bg-blue-400'
               }`}
               onClick={() => setActiveTab('info')}
             >
@@ -101,18 +101,30 @@ const BeachPanel: React.FC<BeachPanelProps> = ({
               className={`px-4 py-2 rounded-t-lg transition-colors ${
                 activeTab === 'weather'
                   ? 'bg-white text-blue-600 font-medium'
-                  : 'bg-blue-500 text-white'
+                  : 'bg-blue-500 text-white hover:bg-blue-400'
               }`}
               onClick={() => setActiveTab('weather')}
             >
               <Cloud size={18} className="inline mr-2" />
               Previsão
             </button>
+
+            <button
+              className={`px-4 py-2 rounded-t-lg transition-colors ${
+                activeTab === 'registro'
+                  ? 'bg-white text-blue-600 font-medium'
+                  : 'bg-blue-500 text-white hover:bg-blue-400'
+              }`}
+              onClick={() => setActiveTab('registro')}
+            >
+              <CalendarPlus size={18} className="inline mr-2" />
+              Registro
+            </button>
           </div>
         </header>
 
         <div className="p-4">
-          {activeTab === 'info' ? (
+          {activeTab === 'info' && (
             <div className="space-y-6">
               <button
                 onClick={() => setShowSessionModal(true)}
@@ -159,7 +171,7 @@ const BeachPanel: React.FC<BeachPanelProps> = ({
                     <MessageCircle size={18} className="mr-2" />
                     Comentário mais curtido da semana
                   </div>
-                  <div className="p-4">
+                   <div className="p-4">
                     <div className="flex items-start">
                       <div className="p-2 rounded-full bg-amber-100 flex items-center justify-center text-amber-500 mt-1">
                         <User size={16} />
@@ -184,9 +196,9 @@ const BeachPanel: React.FC<BeachPanelProps> = ({
               <div className="border rounded-lg overflow-hidden">
                 <div className="bg-gray-50 p-3 text-gray-800 font-medium">Comentários recentes</div>
                 <div className="divide-y">
-                  {recentComments.map((comment) => (
+                  {commentsState.map((comment) => (
                     <div key={comment.id} className="p-4">
-                      <div className="flex items-start">
+                       <div className="flex items-start">
                         <div className="p-2 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 mt-1">
                           <User size={16} />
                         </div>
@@ -206,7 +218,6 @@ const BeachPanel: React.FC<BeachPanelProps> = ({
                     </div>
                   ))}
                 </div>
-
                 <div className="p-4 border-t mt-4">
                   <textarea
                     className="w-full border rounded-lg p-2 text-sm resize-none"
@@ -224,8 +235,29 @@ const BeachPanel: React.FC<BeachPanelProps> = ({
                 </div>
               </div>
             </div>
-          ) : (
+          )}
+
+          {activeTab === 'weather' && (
             <WeatherTab forecasts={weatherForecasts} isLoading={false} />
+          )}
+
+          {activeTab === 'registro' && (
+            <div className="space-y-6">
+              <button
+                onClick={() => setShowSessionModal(true)}
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-4 rounded-lg flex justify-center items-center transition-colors"
+              >
+                <CalendarPlus size={20} className="mr-2" />
+                Faça um novo registro de sessão
+              </button>
+
+              <h3 className="text-xl font-semibold text-gray-800 border-b pb-2">Registros do dia</h3>
+              <div className="text-center text-gray-500 py-8">
+                <CalendarPlus size={48} className="mx-auto mb-4 text-gray-400" />
+                <p className="text-lg">Nenhum registro encontrado.</p>
+                <p className="text-sm">Clique no botão acima para adicionar um registro</p>
+              </div>
+            </div>
           )}
         </div>
       </div>
