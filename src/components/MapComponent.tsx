@@ -32,10 +32,10 @@ const createIcon = (type: LocationType) => {
 
   return L.icon({
     iconUrl,
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32],
-  });
+    iconSize: [48, 48],
+    iconAnchor: [24, 48],
+    popupAnchor: [0, -36],
+  }); 
 };
 
 const SetMapView: React.FC<{ center: [number, number] }> = ({ center }) => {

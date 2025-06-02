@@ -30,7 +30,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ filters, onFilterChange }) => {
         onClick={() => handleToggle('beaches')}
         className={`flex items-center space-x-2 px-6 py-2 rounded-full transition-colors ${
           filters.beaches
-            ? 'bg-blue-500 text-white'
+            ? 'bg-[#253C58] text-white'
             : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
         }`}
         aria-label="Toggle beach markers"
@@ -43,7 +43,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ filters, onFilterChange }) => {
         onClick={() => handleToggle('repairs')}
         className={`flex items-center space-x-2 px-6 py-2 rounded-full transition-colors ${
           filters.repairs
-            ? 'bg-amber-500 text-white'
+            ? 'bg-[#22AFC0] text-white'
             : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
         }`}
         aria-label="Toggle repair shop markers"
@@ -56,7 +56,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ filters, onFilterChange }) => {
         onClick={() => handleToggle('shops')}
         className={`flex items-center space-x-2 px-6 py-2 rounded-full transition-colors ${
           filters.shops
-            ? 'bg-emerald-500 text-white'
+            ? 'bg-[#1D8465] text-white'
             : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
         }`}
         aria-label="Toggle surf shop markers"
