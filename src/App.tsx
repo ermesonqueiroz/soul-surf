@@ -7,6 +7,8 @@ import ShopInfoCard from './components/ShopInfoCard';
 import { allLocations, beaches, getTopPostForBeach, getTopCommentForBeach, getRecentCommentsForBeach, getWeatherForecastForBeach } from './data/mockData';
 import { Beach, FilterState, Repair, Shop, WeatherForecast } from './types';
 import { fetchWeatherForecast } from './api/weatherApi';
+import { useAuth } from './contexts/AuthContext';
+import { useNavigate } from 'react-router';
 
 function App() {
   const [filters, setFilters] = useState<FilterState>({
@@ -22,6 +24,8 @@ function App() {
   const [weatherData, setWeatherData] = useState<Record<string, WeatherForecast[]>>({});
   const [, setIsLoading] = useState(false);
   const recentComments = useMemo(() => getRecentCommentsForBeach(selectedBeach?.id ?? ''), [selectedBeach]);
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Load initial weather data for all beaches
@@ -51,6 +55,11 @@ function App() {
 
     loadWeatherData();
   }, []);
+
+  useEffect(() => {
+    if (isAuthenticated) return;
+    navigate('/login');
+  }, [isAuthenticated, navigate]);
 
   const handleFilterChange = (newFilters: FilterState) => {
     setFilters(newFilters);
