@@ -110,7 +110,7 @@
       id: 'post-1',
       locationId: 'beach-1',
       author: 'Medina',
-      date: '2025-04-01T08:30:00',
+      date: '2025-06-09T08:30:00',
       imageUrl: 'https://imagens.ebc.com.br/U6g70x4QG-sLrWqpwzGKwws-he8=/1170x700/smart/https://agenciabrasil.ebc.com.br/sites/default/files/thumbnails/image/2024/08/05/whatsapp_image_2024-08-05_at_18.37.12.jpeg?itok=Xq-k7mtQ',
       content: 'Hoje tava dificil viu haha, praia do futuro tem dia que tá com raiva',
       likes: 152
@@ -119,7 +119,7 @@
       id: 'post-2',
       locationId: 'beach-2',
       author: 'Thiago Pinheiro',
-      date: '2025-04-02T16:45:00',
+      date: '2025-06-06T16:45:00',
       imageUrl: 'https://i.imgur.com/zGjg3wR.jpeg',
       content: 'Iracema entregando umas ondas maneiras depois do trabalho! Nem tá muito cheio.',
       likes: 89
@@ -128,7 +128,7 @@
       id: 'post-3',
       locationId: 'beach-3',
       author: 'Kelly Slater',
-      date: '2025-04-01T07:15:00',
+      date: '2025-06-04T07:15:00',
       imageUrl: 'https://image-cdn.essentiallysports.com/wp-content/uploads/GettyImages-1610594625.jpg?width=600',
       content: 'The best experience I ever had in a long time, love u Fortaleza ',
       likes: 217
@@ -143,7 +143,7 @@
       postId: 'post-1',
       author: 'João Pedro',
       date: '2025-04-01T09:15:00',
-      content: 'Também tava lá! Melhor sessão do mês até agora!',
+      content: 'Hoje tava muito dificil',
       likes: 24
     },
     {
@@ -152,15 +152,15 @@
       postId: 'post-1',
       author: 'Carla Mendes',
       date: '2025-04-01T10:30:00',
-      content: 'Como tava o crowd? Pensando em ir amanhã cedo.',
+      content: 'Como tava o crowd? Pensando em ir.',
       likes: 8
     },
     {
       id: 'comment-3',
       locationId: 'beach-1',
       author: 'Lucas Martins',
-      date: '2025-04-02T08:45:00',
-      content: 'Previsão é de ondas de 4-5 pés amanhã cedo com vento terral fraco. Condições perfeitas!',
+      date: '2025-06-09T08:45:00',
+      content: 'Tava impossivel',
       likes: 42
     },
     {
@@ -168,17 +168,17 @@
       locationId: 'beach-2',
       postId: 'post-2',
       author: 'Pedro Alves',
-      date: '2025-04-02T17:30:00',
-      content: 'Tava saindo quando você entrou! A sessão do fim de tarde tava show!',
-      likes: 19
+      date: '2025-06-09T17:30:00',
+      content: 'as ondas hojes tão muito boas!',
+      likes: 5
     },
     {
       id: 'comment-5',
       locationId: 'beach-3',
       postId: 'post-3',
       author: 'Bianca Lima',
-      date: '2025-04-01T08:00:00',
-      content: 'Titanzinho absolutamente perfeito! Viu o Gabriel mandando aqueles aéreos?',
+      date: '2025-06-09T08:00:00',
+      content: 'Titanzinho absolutamente perfeito! Hoje mandei meu primeiro aéreo',
       likes: 31
     },
     {
