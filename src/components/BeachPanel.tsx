@@ -106,6 +106,10 @@ const BeachPanel: React.FC<BeachPanelProps> = ({
     setCommentsState(recentComments);
   }, [recentComments]);
 
+  useEffect(() => {
+    setActiveTab('info');
+  }, [beach.id]);
+
   const toggleRecordLike = (id: string) => {
     const hasLiked = likedRecords.has(id);
     const updatedRecords = sessionRecords.map(r =>

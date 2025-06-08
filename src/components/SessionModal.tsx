@@ -15,12 +15,12 @@ const SessionModal: React.FC<SessionModalProps> = ({ beach, onClose, onSubmit })
   const [rating, setRating] = useState(3);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       setImageFile(file);
-      
+
       // Create preview URL
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -29,10 +29,10 @@ const SessionModal: React.FC<SessionModalProps> = ({ beach, onClose, onSubmit })
       reader.readAsDataURL(file);
     }
   };
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     onSubmit({
       date,
       time,
@@ -42,12 +42,12 @@ const SessionModal: React.FC<SessionModalProps> = ({ beach, onClose, onSubmit })
       imageFile: imageFile || undefined
     });
   };
-  
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white rounded-lg w-full max-w-md mx-4 overflow-hidden">
         <div className="bg-blue-500 text-white px-4 py-3 flex justify-between items-center">
-          <h3 className="font-bold text-lg">Log a Surf Session</h3>
+          <h3 className="font-bold text-lg">Registro de sessão</h3>
           <button
             onClick={onClose}
             className="text-white hover:text-blue-100"
@@ -56,11 +56,11 @@ const SessionModal: React.FC<SessionModalProps> = ({ beach, onClose, onSubmit })
             <X size={24} />
           </button>
         </div>
-        
+
         <form onSubmit={handleSubmit} className="p-4">
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Beach
+              Praia
             </label>
             <input
               type="text"
@@ -69,11 +69,11 @@ const SessionModal: React.FC<SessionModalProps> = ({ beach, onClose, onSubmit })
               className="w-full p-2 border rounded-lg bg-gray-50"
             />
           </div>
-          
+
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Date
+                Data
               </label>
               <input
                 type="date"
@@ -83,10 +83,10 @@ const SessionModal: React.FC<SessionModalProps> = ({ beach, onClose, onSubmit })
                 className="w-full p-2 border rounded-lg"
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Time
+                Hora
               </label>
               <input
                 type="time"
@@ -97,10 +97,10 @@ const SessionModal: React.FC<SessionModalProps> = ({ beach, onClose, onSubmit })
               />
             </div>
           </div>
-          
+
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Upload a Photo
+              Adicione uma foto
             </label>
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
               {previewUrl ? (
@@ -126,7 +126,7 @@ const SessionModal: React.FC<SessionModalProps> = ({ beach, onClose, onSubmit })
                 <label className="cursor-pointer block">
                   <Upload className="mx-auto text-gray-400 mb-2" size={32} />
                   <span className="text-sm text-gray-500 block">
-                    Click to upload or drag and drop
+                    Clique para adicionar ou arraste a imagem
                   </span>
                   <input
                     type="file"
@@ -138,54 +138,34 @@ const SessionModal: React.FC<SessionModalProps> = ({ beach, onClose, onSubmit })
               )}
             </div>
           </div>
-          
+
+
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Session Rating
-            </label>
-            <div className="flex space-x-1">
-              {[1, 2, 3, 4, 5].map((value) => (
-                <button
-                  key={value}
-                  type="button"
-                  onClick={() => setRating(value)}
-                  className="focus:outline-none"
-                >
-                  <Star
-                    size={24}
-                    className={rating >= value ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}
-                  />
-                </button>
-              ))}
-            </div>
-          </div>
-          
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Notes
+              Descrição
             </label>
             <textarea
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               rows={4}
               className="w-full p-2 border rounded-lg"
-              placeholder="How was your session? Describe wave conditions, crowd, etc."
+              placeholder="Descreva como foi sua experiência"
             />
           </div>
-          
+
           <div className="flex justify-end space-x-2">
             <button
               type="button"
               onClick={onClose}
               className="px-4 py-2 text-gray-700 border rounded-lg hover:bg-gray-50"
             >
-              Cancel
+              Cancelar
             </button>
             <button
               type="submit"
               className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
             >
-              Save
+              Salvar
             </button>
           </div>
         </form>
