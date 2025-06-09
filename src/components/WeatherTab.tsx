@@ -31,17 +31,17 @@ const WeatherTab: React.FC<WeatherTabProps> = ({ forecasts, isLoading }) => {
         {forecasts.map((forecast, index) => (
           <div key={index} className="bg-blue-50 rounded-lg p-4">
             <div className="flex justify-between items-center mb-2">
-              <span className="font-medium">
-                {format(new Date(`${forecast.date}T${forecast.time}`), 'dd/MM/yyyy')}
-              </span>
+            <span className="font-medium">
+                {format(new Date(`${forecast.date}T${forecast.time}`), 'dd/MM/yyyy - HH:mm')}
+          </span>
             </div>
-            
+
             <div className="grid grid-cols-2 gap-3">
               <div className="flex items-center">
                 <Thermometer size={18} className="text-red-500 mr-2" />
                 <span>{forecast.temperature}°C</span>
               </div>
-              
+
               <div className="flex items-center">
                 <Wind size={18} className="text-blue-500 mr-2" />
                 <span>{forecast.windSpeed} km/h</span>
@@ -51,7 +51,7 @@ const WeatherTab: React.FC<WeatherTabProps> = ({ forecasts, isLoading }) => {
                   style={{ rotate: `${forecast.windDirection}deg` }}
                 />
               </div>
-              
+
               <div className="flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -69,13 +69,13 @@ const WeatherTab: React.FC<WeatherTabProps> = ({ forecasts, isLoading }) => {
                 </svg>
                 <span>{forecast.waveHeight?.toFixed(2)}m</span>
               </div>
-              
+
               <div className="flex items-center">
                 <Droplets size={18} className="text-blue-500 mr-2" />
                 <span>{forecast.precipitation}mm</span>
               </div>
             </div>
-            
+
             <div className="mt-3 text-sm">
               <div className="font-medium text-blue-700">Condições do surf:</div>
               <div className="mt-1">
@@ -92,10 +92,9 @@ const WeatherTab: React.FC<WeatherTabProps> = ({ forecasts, isLoading }) => {
 // Helper function to generate surf condition text based on weather data
 const getSurfConditionText = (forecast: WeatherForecast): string => {
   if (!forecast.waveHeight) return 'Sem dados disponíveis';
-  
+
   const conditions = [];
-  
-  // Wave size
+
   if (forecast.waveHeight < 0.5) {
     conditions.push('Mar flat');
   } else if (forecast.waveHeight < 1) {
@@ -107,7 +106,7 @@ const getSurfConditionText = (forecast: WeatherForecast): string => {
   } else {
     conditions.push('Mar perigoso, só pra big rider');
   }
-  
+
   // Wind conditions
   const windDirection = forecast.windDirection;
   if ((windDirection > 180 && windDirection < 360) || windDirection === 0) {
@@ -115,12 +114,12 @@ const getSurfConditionText = (forecast: WeatherForecast): string => {
   } else {
     conditions.push('maral');
   }
-  
+
   // Precipitation
   if (forecast.precipitation > 1) {
     conditions.push('chovendo');
   }
-  
+
   return conditions.join(', ');
 };
 
